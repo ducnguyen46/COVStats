@@ -4,16 +4,15 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
-    app:contentPaddingLeft="15dp"
-    app:contentPaddingRight="15dp"
-    app:contentPaddingTop="23dp"
-    app:contentPaddingBottom="23dp"
+    app:contentPadding="10dp"
     android:layout_gravity="center_vertical"
     android:background="@drawable/border_radius_corner">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="1">
+        android:stretchColumns="1"
+        android:padding="10dp"
+        android:background="@drawable/border_radius_corner">
         <TableRow>
             <ImageView
                 android:id="@+id/imgFlag"
@@ -22,23 +21,26 @@
                 android:src="@drawable/ic_launcher_foreground"/>
             <TextView
                 android:id="@+id/tvNameTop"
-                android:layout_marginHorizontal="17dp"
+                android:layout_marginLeft="17dp"
                 android:textColor="@color/primary_black"
                 android:fontFamily="@font/sf_pro_display"
                 android:textFontWeight="300"
                 android:textSize="22sp"
 
                 android:text="China"/>
+
+        </TableRow>
+        <TableRow>
             <TextView
+                android:layout_column="1"
                 android:id="@+id/tvTopTotalCase"
-                android:layout_marginHorizontal="10dp"
+                android:layout_gravity="right"
                 android:fontFamily="@font/sf_pro_text"
                 android:textFontWeight="600"
                 android:textColor="@color/primary_black"
                 android:textSize="17sp"
 
                 android:text="81,054" />
-
         </TableRow>
     </TableLayout>
 

@@ -3,12 +3,240 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.EducationFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context=".view.educationfragemnt.EducationFragment"
+    android:background="@color/white">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="25dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:textFontWeight="600"
+                android:textSize="28sp"
+                android:textColor="@color/primary_black"
+                android:text="Basic protective measures against the new coronavirus"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/img_medical_report"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+
+                        android:textSize="17sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="600"
+
+                        android:text="Medical report often"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+
+                        android:textSize="14sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="400"
+                        android:text="Report medical help you a lot"/>
+                    <Button
+                        android:id="@+id/reportBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/buttonred_whitetext"
+                        android:text="Medical report"
+                        android:textAllCaps="false"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/sf_pro_text"
+                        android:textFontWeight="400"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/img_wash_hand"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+
+                        android:textSize="17sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="600"
+
+                        android:text="Clean your hands often"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+
+                        android:textSize="14sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="400"
+                        android:text="Wash hands often with soap and water for at least 20s"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/img_wear_mask"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+
+                        android:textSize="17sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="600"
+
+                        android:text="Wear a facemask"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+
+                        android:textSize="14sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="400"
+                        android:text="You should wear facemask when you are around other people."/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/img_avoid_touching"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+
+                        android:textSize="17sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="600"
+
+                        android:text="Avoid touching your face"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+
+                        android:textSize="14sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="400"
+                        android:text="Hands touch many surfaces and can pick up viruses. "/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/img_close_contact"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+
+                        android:textSize="17sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="600"
+
+                        android:text="Avoid close contact"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+
+                        android:textSize="14sp"
+                        android:textColor="@color/primary_black"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textFontWeight="400"
+                        android:text="Put distance between yourself and other people."/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

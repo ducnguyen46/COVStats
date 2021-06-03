@@ -66,13 +66,13 @@ public class CovidDataTask extends AsyncTask<String, Integer, JSONObject> {
             globalCovid.setCountry("Global");
             globalCovid.setCountryCode("Global");
 
-            databaseHelper.insertCovidCountry(globalCovid);
+            databaseHelper.insertOrUpdateCountryData(globalCovid);
             //insert all country
             JSONArray jsonArrayCountries = jsonResponse.getJSONArray("Countries");
             for(int i = 0; i < jsonArrayCountries.length(); i++){
                 JSONObject jsonCountry = jsonArrayCountries.getJSONObject(i);
                 CovidCountry country = new CovidCountry(jsonCountry);
-                databaseHelper.insertCovidCountry(country);
+                databaseHelper.insertOrUpdateCountryData(country);
             }
 
             return jsonResponse;

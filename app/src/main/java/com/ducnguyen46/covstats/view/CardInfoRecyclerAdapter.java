@@ -59,7 +59,7 @@ public class CardInfoRecyclerAdapter extends RecyclerView.Adapter<CardInfoRecycl
         }
 
         holder.tvTypeInfo.setText(infoCard.getInfoType());
-        holder.tvStatsInfo.setText(String.valueOf(infoCard.getStatsInfo()));
+        holder.tvStatsInfo.setText(String.format("%1$,d", infoCard.getStatsInfo()));
         holder.imgTypeInfo.setImageResource(infoCard.getImgInfoType());
     }
 

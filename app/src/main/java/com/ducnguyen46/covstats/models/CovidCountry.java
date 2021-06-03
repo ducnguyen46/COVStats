@@ -22,7 +22,7 @@ public class CovidCountry implements Serializable {
     public CovidCountry() {
     }
 
-    public CovidCountry(String country, String countryCode, int newConfirmed, int totalConfirmed, int newDeaths, int totalDeaths, int newRecovered, int totalRecovered, Date date) {
+    public CovidCountry(String country, String countryCode, int newConfirmed, int totalConfirmed, int newRecovered, int totalRecovered, int newDeaths, int totalDeaths, Date date) {
         this.country = country;
         this.countryCode = countryCode;
         this.newConfirmed = newConfirmed;

@@ -1,9 +1,12 @@
-package com.ducnguyen46.covstats.view.homefragment;
+ package com.ducnguyen46.covstats.view.homefragment;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.ducnguyen46.covstats.MainActivity;
 import com.ducnguyen46.covstats.R;
 import static com.ducnguyen46.covstats.constant.Constant.*;
 
@@ -19,6 +23,7 @@ import com.ducnguyen46.covstats.service.CovidDataTask;
 import com.ducnguyen46.covstats.models.CovidCountry;
 import com.ducnguyen46.covstats.models.InfoCard;
 import com.ducnguyen46.covstats.view.CardInfoRecyclerAdapter;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,12 +33,22 @@ import java.util.concurrent.ExecutionException;
 
 public class HomeFragment extends Fragment {
     private RecyclerView rcWorldCase;
-    private ListView rcTopCountries;
+    private RecyclerView rcTopCountries;
     private ArrayList<InfoCard> infoCards;
     private CardInfoRecyclerAdapter rcWordCaseAdapter;
     private CovidDataTask covidDataTask;
 
-    public HomeFragment() {
+    private ArrayList<CovidCountry> topCountries;
+    private CardTopRecyclerAdapter rcCardTopAdapter;
+    private CovidCountry globalInfo;
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).getSupportActionBar().setTitle("COVStats");
+        topCountries = getTop5Country();
+        rcCardTopAdapter.setData(topCountries);
     }
 
     @Override
@@ -57,6 +72,15 @@ public class HomeFragment extends Fragment {
                 RecyclerView.VERTICAL, false);
         rcWorldCase.setLayoutManager(gridLayout);
         rcWorldCase.setAdapter(rcWordCaseAdapter);
+
+        topCountries = getTop5Country();
+        rcCardTopAdapter = new CardTopRecyclerAdapter(getActivity());
+        rcCardTopAdapter.setData(topCountries);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        rcTopCountries.setLayoutManager(linearLayoutManager);
+        rcTopCountries.setAdapter(rcCardTopAdapter);
+
         return view;
     }
 
@@ -64,7 +88,7 @@ public class HomeFragment extends Fragment {
         ArrayList<InfoCard> globalInfoCards = new ArrayList<>();
 
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
-        CovidCountry globalInfo = databaseHelper.getCovidCountryByName("Global");
+        globalInfo = databaseHelper.getGlobalInfo();
 
         if(globalInfo == null){
             covidDataTask = new CovidDataTask(getActivity());
@@ -99,5 +123,10 @@ public class HomeFragment extends Fragment {
         globalInfoCards.add(cardTotalDeath);
 
         return globalInfoCards;
+    }
+
+    private ArrayList<CovidCountry> getTop5Country(){
+        DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+        return databaseHelper.getTop5Country();
     }
 }

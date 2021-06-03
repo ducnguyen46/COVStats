@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.ducnguyen46.covstats.view.countryfragment.CountryFragment;
+import com.ducnguyen46.covstats.view.educationfragemnt.EducationFragment;
 import com.ducnguyen46.covstats.view.homefragment.HomeFragment;
+import com.ducnguyen46.covstats.view.newsfragment.NewsFragment;
 
 public class BottomNavigtionMainAdapter extends FragmentStatePagerAdapter {
     public BottomNavigtionMainAdapter(@NonNull FragmentManager fm, int behavior) {

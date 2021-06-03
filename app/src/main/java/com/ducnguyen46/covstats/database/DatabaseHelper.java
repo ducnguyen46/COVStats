@@ -45,10 +45,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public CovidCountry getCovidCountryByName(String countryName){
+    public ArrayList<CovidCountry> getCountryByName(String countryName){
+        ArrayList<CovidCountry> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        if(countryName == null) countryName = "";
+        String[] args = {"Global", "%"+ countryName + "%"};
+
+        Cursor countryCurson = db.query(COVID_COUNTRY_TBL, null,
+                COUNTRY_NAME_COL + " != ? AND " + COUNTRY_NAME_COL + " LIKE ?", args,
+                null, null,  COUNTRY_NAME_COL + " ASC ", null);
+        while (countryCurson != null && countryCurson.moveToNext()) {
+            try {
+                CovidCountry covidCountry = new CovidCountry(
+                        countryCurson.getString(countryCurson.getColumnIndex(COUNTRY_NAME_COL)),
+                        countryCurson.getString(countryCurson.getColumnIndex(COUNTRY_CODE_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(NEW_CASE_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_CASE_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(NEW_RECOVERED_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_RECOVERED_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(NEW_DEATH_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_DEATH_COL)),
+                        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(
+                                countryCurson.getString(countryCurson.getColumnIndex(DATE_COL))));
+
+                list.add(covidCountry);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    public CovidCountry getGlobalInfo(){
         SQLiteDatabase db = getReadableDatabase();
         CovidCountry covidCountry;
-        String[] args = {countryName};
+        String[] args = {"Global"};
         Cursor countryCurson = db.query(COVID_COUNTRY_TBL, null, COUNTRY_NAME_COL + " = ?", args,
                 null, null, null, null);
         while(countryCurson != null && countryCurson.moveToNext()){
@@ -59,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         countryCurson.getInt(countryCurson.getColumnIndex(NEW_CASE_COL)),
                         countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_CASE_COL)),
                         countryCurson.getInt(countryCurson.getColumnIndex(NEW_RECOVERED_COL)),
-                        countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_CASE_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_RECOVERED_COL)),
                         countryCurson.getInt(countryCurson.getColumnIndex(NEW_DEATH_COL)),
                         countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_DEATH_COL)),
                         new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(
@@ -88,6 +119,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    public ArrayList<CovidCountry> getTop5Country(){
+        ArrayList<CovidCountry> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        String[] args = {"Global"};
+
+        Cursor countryCurson = db.query(COVID_COUNTRY_TBL, null, COUNTRY_NAME_COL + " != ?", args,
+                null, null,  TOTAL_CASE_COL + " DESC ", "5");
+        while (countryCurson != null && countryCurson.moveToNext()) {
+            try {
+                CovidCountry covidCountry = new CovidCountry(
+                        countryCurson.getString(countryCurson.getColumnIndex(COUNTRY_NAME_COL)),
+                        countryCurson.getString(countryCurson.getColumnIndex(COUNTRY_CODE_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(NEW_CASE_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_CASE_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(NEW_RECOVERED_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_RECOVERED_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(NEW_DEATH_COL)),
+                        countryCurson.getInt(countryCurson.getColumnIndex(TOTAL_DEATH_COL)),
+                        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(
+                                countryCurson.getString(countryCurson.getColumnIndex(DATE_COL))));
+
+                list.add(covidCountry);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
     public long insertCovidCountry(CovidCountry covidCountry){
         SQLiteDatabase db = getWritableDatabase();
 
@@ -103,5 +163,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(DATE_COL,
                 new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(covidCountry.getDate()));
         return db.insert(COVID_COUNTRY_TBL, null, values);
+    }
+
+    public void updateCovidCountry(CovidCountry covidCountry){
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COUNTRY_CODE_COL, covidCountry.getCountryCode());
+        values.put(NEW_CASE_COL, covidCountry.getNewConfirmed());
+        values.put(TOTAL_CASE_COL, covidCountry.getTotalConfirmed());
+        values.put(NEW_RECOVERED_COL, covidCountry.getNewRecovered());
+        values.put(TOTAL_RECOVERED_COL, covidCountry.getTotalRecovered());
+        values.put(NEW_DEATH_COL, covidCountry.getNewDeath());
+        values.put(TOTAL_DEATH_COL, covidCountry.getTotalDeath());
+        values.put(DATE_COL,
+                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(covidCountry.getDate()));
+
+        String[] args = {covidCountry.getCountry()};
+        db.update(COVID_COUNTRY_TBL, values, COUNTRY_NAME_COL + " = ?", args);
+    }
+
+    public void insertOrUpdateCountryData(CovidCountry covidCountry){
+        SQLiteDatabase db = getWritableDatabase();
+
+        String[] args = {covidCountry.getCountry()};
+
+        Cursor countryCurson = db.query(COVID_COUNTRY_TBL, null,
+                COUNTRY_NAME_COL + " LIKE ?", args,
+                null, null,  null, null);
+        if(!countryCurson.moveToNext()){
+            insertCovidCountry(covidCountry);
+        } else {
+            updateCovidCountry(covidCountry);
+        }
     }
 }
