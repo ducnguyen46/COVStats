@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.news:
                         viewPager.setCurrentItem(3);
                         break;
+                    case R.id.chart:
+                        viewPager.setCurrentItem(4);
+                        break;
                 }
                 return true;
             }

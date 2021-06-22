@@ -43,7 +43,7 @@
             android:fontFamily="@font/sf_pro_display"
             android:textFontWeight="600"
             android:textColor="@color/primary_black"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:text="300,300" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

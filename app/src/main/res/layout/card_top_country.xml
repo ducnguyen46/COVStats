@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
     app:contentPadding="10dp"
     android:layout_gravity="center_vertical"
-    android:background="@drawable/border_radius_corner">
+    app:cardBackgroundColor="@color/white"
+    android:background="@color/white">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

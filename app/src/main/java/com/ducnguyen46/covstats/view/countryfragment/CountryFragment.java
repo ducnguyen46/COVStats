@@ -87,11 +87,6 @@ public class CountryFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
     private ArrayList<CovidCountry> getDataSearchCountry(String countryName){
         return databaseHelper.getCountryByName(countryName);
     }

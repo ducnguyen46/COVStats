@@ -4,6 +4,7 @@ public final class Constant {
 
     public static final String URL_LINK = "https://api.covid19api.com/summary";
     public static final String URL_NEWS =  "https://vnexpress.net/rss/";
+    public static final String URL_US = "https://api.covidtracking.com/v1/us/daily.json";
 
     public static final String NEW_CASE = "New case";
     public static final String TOTAL_CASE = "Total case";

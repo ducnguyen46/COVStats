@@ -95,6 +95,11 @@ public class CovidDataTask extends AsyncTask<String, Integer, JSONObject> {
     }
 
     @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+    }
+
+    @Override
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
         Toast.makeText(activity, "Downloaded data", Toast.LENGTH_SHORT).show();

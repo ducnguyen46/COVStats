@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 TOTAL_RECOVERED_COL + " INTEGER, " +
                 NEW_DEATH_COL + " INTEGER, " +
                 TOTAL_DEATH_COL + " INTEGER, " +
-                DATE_COL + " INTERGER );"
+                DATE_COL + " TEXT );"
         );
     }
 

@@ -16,4 +16,8 @@
         android:id="@+id/news"
         android:title="News"
         android:icon="@drawable/ic_news"/>
+    <item
+        android:id="@+id/chart"
+        android:title="Chart"
+        android:icon="@drawable/ic_map"/>
 </menu>
